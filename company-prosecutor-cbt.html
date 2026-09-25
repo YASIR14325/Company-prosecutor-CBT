@@ -16,7 +16,6 @@
       --white: #fff;
       --muted: #627d98;
     }
-
     * { box-sizing: border-box; }
     body {
       margin: 0;
@@ -141,7 +140,7 @@
       font-weight: 700;
     }
     .question-card h2 {
-      font-size: clamp(20px, 1.8vw, 26px);
+      font-size: clamp(20px, 1.8vw, 27px);
       margin: 20px 0;
       line-height: 1.45;
     }
@@ -275,33 +274,33 @@
 <body>
   <header class="topbar">
     <div>
-      <div class="eyebrow">LEGAL PRACTICE TEST</div>
+      <div class="eyebrow">RECRUITMENT TEST PRACTICE</div>
       <h1>Company Prosecutor CBT</h1>
     </div>
-    <div id="clock" class="clock" aria-live="polite">45:00</div>
+    <div id="clock" class="clock" aria-live="polite">120:00</div>
   </header>
 
   <main class="container">
     <section id="startScreen" class="card start-screen">
-      <span class="badge">MOCK TEST</span>
-      <h2>Company Prosecutor Practice Paper</h2>
-      <p>This mock test is designed around core law topics relevant to Company Prosecutor recruitment: Companies Act, insolvency, criminal law, PMLA, evidence, and corporate offences.</p>
+      <span class="badge">FULL-LENGTH MOCK TEST</span>
+      <h2>Company Prosecutor Recruitment Test</h2>
+      <p>Practice a 120-question objective test covering Companies Act, insolvency, criminal law, corporate offences, economic laws, evidence, and constitutional legal principles.</p>
 
       <div class="stats">
-        <div><b>40</b><small>Questions</small></div>
-        <div><b>40</b><small>Marks</small></div>
-        <div><b>45 min</b><small>Duration</small></div>
-        <div><b>−0.25</b><small>Wrong answer</small></div>
+        <div><b>120</b><small>Questions</small></div>
+        <div><b>300</b><small>Marks</small></div>
+        <div><b>120 min</b><small>Duration</small></div>
+        <div><b>−0.833</b><small>Wrong answer</small></div>
       </div>
 
       <div class="notice">
         <strong>Instructions</strong>
         <ul>
-          <li>Choose the best option.</li>
-          <li>Each question carries 1 mark.</li>
+          <li>One option is correct in each question.</li>
+          <li>Each question carries 2.5 marks.</li>
           <li>Unattempted questions get 0 marks.</li>
-          <li>There is negative marking for wrong answers.</li>
-          <li>This is a practice test for revision and training only.</li>
+          <li>Negative marking is applied for wrong answers.</li>
+          <li>This is a practice exam for training and revision.</li>
         </ul>
       </div>
 
@@ -312,7 +311,7 @@
       <div class="progress-row">
         <div>
           <b id="sectionName">Companies Act</b>
-          <span id="progressText">Question 1 of 40</span>
+          <span id="progressText">Question 1 of 120</span>
         </div>
         <div class="progress"><span id="progressBar"></span></div>
       </div>
@@ -321,7 +320,7 @@
         <article class="card question-card">
           <div class="question-meta">
             <span id="qNumber">Q1</span>
-            <span>1 mark</span>
+            <span>2.5 marks</span>
           </div>
 
           <h2 id="question"></h2>
@@ -357,7 +356,7 @@
 
       <div class="score-box">
         <strong id="score">0</strong>
-        <span>/ 40</span>
+        <span>/ 300</span>
         <p id="resultMessage"></p>
       </div>
 
@@ -378,44 +377,152 @@
     </section>
   </main>
 
-  <footer>Practice tool for revision and training. Always verify with the latest statutory amendments and official notifications.</footer>
+  <footer>Practice tool for revision and training. Always verify with the latest official notification, statutory amendments, and applicable law updates.</footer>
 
   <script>
     const sections = {
-      'Companies Act': [
-        ['The registered office of a company is required to be capable of receiving and acknowledging communications under:',['Section 12','Section 18','Section 21','Section 28'],0,'Section 12 deals with registered office and communication.'],
-        ['The doctrine that a company has a separate legal personality was laid down in:',['Salomon v. Salomon','A.K. Gopalan v. State of Madras','Keshavananda Bharati v. State of Kerala','State of Bombay v. F.N. Balsara'],0,'Salomon is the classic case establishing separate legal personality.'],
-        ['The minimum number of directors in a public company is:',['One','Two','Three','Four'],2,'Section 149 requires at least three directors in a public company.'],
-        ['A private company is prohibited from inviting the public to subscribe for its:',['Debentures only','Shares or debentures','Loans only','Deposits only'],1,'A private company cannot invite the public to subscribe for its securities.'],
-        ['The memorandum of a company primarily defines its:',['Internal governance rules','Constitution and scope of powers','Dividend policy','Audit standards'],1,'The memorandum sets out the company’s fundamental charter.']
+      'Companies Act, 2013': [
+        ['The registered office of a company must be capable of receiving and acknowledging communications under:',['Section 12','Section 13','Section 14','Section 15'],0,'Section 12 requires the registered office to be capable of receiving and acknowledging communications.'],
+        ['The memorandum of a company primarily defines its:',['Internal governance norms','Constitution and scope of powers','Audit procedures','Employee service rules'],1,'The memorandum is the company’s charter and defines its objects and scope.'],
+        ['A private company is prohibited from inviting the public to subscribe for its:',['Shares or debentures','Loans only','Audits only','Books of accounts'],1,'Section 2(68) prohibits public subscription in a private company.'],
+        ['The doctrine of separate legal personality was established in:',['Salomon v. Salomon','A.K. Gopalan v. State of Madras','Kesavananda Bharati v. State of Kerala','Dredge v. Paterson'],0,'Salomon is the leading authority on separate legal personality.'],
+        ['A prospectus containing an untrue statement may create:',['Only civil liability','Only criminal liability','Civil and criminal liability','No liability if the shares are allotted'],2,'The law may impose civil and criminal consequences depending on the statutory breach.'],
+        ['The minimum number of directors in a public company is:',['One','Two','Three','Four'],2,'A public company must have at least three directors.'],
+        ['The maximum number of directors a company may appoint without a special resolution is:',['10','12','15','20'],2,'The statutory ceiling is fifteen directors without special resolution.'],
+        ['A director must disclose his interest in a contract under:',['Section 166','Section 173','Section 184','Section 188'],2,'Section 184 mandates disclosure of interest by a director.'],
+        ['The powers of the Board are subject to the Act, memorandum, articles and:',['Shareholder sentiments alone','Regulations made under the law','Only the auditor’s view','Only stock exchange rules'],1,'Board power is constrained by statute, memorandum, articles and law.'],
+        ['Related party transactions are regulated mainly by:',['Section 135','Section 173','Section 188','Section 241'],2,'Section 188 governs related party transactions.'],
+        ['CSR obligations are generally triggered by specified criteria relating to net worth, turnover, or:',['Number of directors','Net profit','Share premium','Company age'],1,'CSR is linked to net worth, turnover and net profit thresholds.'],
+        ['The first auditor of a company is generally appointed by the Board within:',['15 days','30 days','60 days','90 days'],1,'The first auditor is normally appointed by the Board within 30 days.'],
+        ['Investigation into company affairs may be ordered under:',['Section 210','Section 230','Section 245','Section 447'],0,'Section 210 provides the statutory basis for investigation.'],
+        ['Oppression and mismanagement proceedings are principally in:',['Sections 241-242','Sections 96-99','Sections 173-175','Sections 399-401'],0,'Sections 241 and 242 deal with oppression and mismanagement.'],
+        ['Fraud under the Companies Act is defined in:',['Section 2(17)','Section 166','Section 447','Section 454'],2,'Section 447 deals with fraud and punishment.'],
+        ['The Serious Fraud Investigation Office is established under:',['Section 211','Section 212','Section 219','Section 247'],0,'Section 211 provides the establishment of SFIO.'],
+        ['The Articles of Association regulate:',['The internal governance of the company','The company’s external creditors only','Tax filing rules only','The constitution of India'],0,'Articles govern the internal management of the company.'],
+        ['A company may alter its memorandum only in accordance with:',['The law and procedure laid down under the Act','The auditor’s opinion','The local district authority','Any informal shareholder discussion'],0,'Alteration of memorandum must comply with statutory procedure.'],
+        ['A shareholder’s right to receive dividends is dependent on:',['Articles and conditions of entitlement under law','Only the Board’s convenience','Only the managing director’s discretion','The company secretary’s preference'],0,'Dividend rights are determined by law and the company’s constitution.'],
+        ['The concept of lifting the corporate veil is applied in cases of:',['Fraud or improper conduct','Routine internal meetings','Default in filing annual return only','Dividend declaration only'],0,'The veil may be lifted in exceptional circumstances such as fraud.'],
+        ['The share capital of a company includes:',['Equity and preference shares, subject to law','Only loans and deposits','Only unpaid dividends','Only board resolutions'],0,'Share capital includes various classes of shares under law.'],
+        ['A debenture includes:',['Debt instrument issued by a company','A company name reservation application','A shareholder warrant only','A tax certificate'],0,'Debentures are instruments for borrowing.'],
+        ['A company can issue sweat equity shares to:',['Employees for their contributions','Only government agencies','Only shareholders as a matter of course','Only auditors'],0,'Sweat equity is for employees and directors working for the company.'],
+        ['A charge created on company property must generally be registered in:',['The register of charges','The securities market register','The ministry website only','The court diary'],0,'Registration of charges is statutorily required.'],
+        ['A listed company must ordinarily comply with additional disclosure obligations under:',['SEBI regulations','Only the Income Tax Act','Only the Penal Code','Only local bylaws'],0,'SEBI regulations apply to listed companies.'],
+        ['The Board meeting quorum is ordinarily determined by:',['The company’s Articles and the Act','The external auditor only','The tax authority only','The company secretary alone'],0,'Meeting quorum depends on statutory and constitutional provisions.'],
+        ['A director who is convicted of an offence may be disqualified under:',['Section 164','Section 149','Section 177','Section 212'],0,'Section 164 deals with disqualification of directors.'],
+        ['An annual return is filed under:',['Section 92','Section 94','Section 96','Section 99'],0,'Section 92 provides for annual return.'],
+        ['The concept of corporate social responsibility is introduced in:',['Section 135','Section 149','Section 185','Section 188'],0,'Section 135 introduces CSR.'],
+        ['A company’s internal audit is not mandatory in all cases, but may be required by:',['Law or articles or board directions','Only the consumer forum','Only government policy statements','Only the Constitution'],0,'Internal audit may be required by law or internal governance structures.'],
+        ['When a company enters into a contract through an authorised officer, the company is bound by the act under the principle of:',['Agency and representation','Res judicata','Rule of law only','Judicial deference'],0,'Authority and representation bind the company.']
       ],
-      'Corporate Law and Insolvency': [
-        ['The Insolvency and Bankruptcy Code, 2016 consolidates and amends the law relating to:',['Insolvency and bankruptcy of individuals only','Insolvency and bankruptcy of corporate persons and individuals','Tax law only','Labour law only'],1,'The IBC governs insolvency and bankruptcy across the economy.'],
-        ['The adjudicating authority for corporate insolvency resolution is generally the:',['High Court','NCLT','SEBI','Consumer Forum'],1,'NCLT is the adjudicating authority for corporate insolvency matters.'],
-        ['A moratorium under the IBC is imposed under:',['Section 12','Section 14','Section 29','Section 53'],1,'Section 14 provides for the moratorium.'],
-        ['The Committee of Creditors is primarily composed of:',['Operational creditors only','Financial creditors','Shareholders only','Government officers'],1,'The CoC is generally constituted by financial creditors.'],
-        ['Under the Companies Act, related-party transactions are regulated mainly by:',['Section 188','Section 134','Section 149','Section 134A'],0,'Section 188 governs related-party transactions.']
+      'Insolvency, Competition and Corporate Regulation': [
+        ['The IBC is intended to consolidate and amend the law relating to:',['Insolvency and bankruptcy','Taxation only','Criminal procedure only','Company incorporation only'],0,'IBC targets insolvency and bankruptcy law.'],
+        ['The adjudicating authority for corporate insolvency under the IBC is generally the:',['NCLT','DRT','SEBI','High Court'],0,'The NCLT is the principal adjudicating authority.'],
+        ['The timeline for resolution is generally set out as:',['90 days','180 days with some extensions','365 days without extension','30 days only'],1,'The timeline is ordinarily 180 days, extendable in prescribed circumstances.'],
+        ['A moratorium under the IBC is provided by:',['Section 12','Section 14','Section 29','Section 53'],1,'Section 14 imposes the moratorium.'],
+        ['The committee of creditors consists largely of:',['Operational creditors only','Financial creditors','Government officers only','Auditors only'],1,'The CoC is primarily made of financial creditors.'],
+        ['The resolution professional is appointed by:',['The committee of creditors or the Adjudicating Authority as per the law','Company registrar only','The police only','The Income Tax Department alone'],0,'The Resolution Professional is appointed under the statutory scheme.'],
+        ['The waterfall distribution in liquidation is provided in:',['Section 30','Section 39','Section 53','Section 66'],2,'Section 53 sets out the order of distribution.'],
+        ['Preferential transactions are governed by:',['Section 43','Section 53','Section 66','Section 188'],0,'Section 43 deals with preferential transactions.'],
+        ['A company may be wound up by:',['Court or voluntary liquidation under the Act','Only the police','Only the tax department','Only the RBI'],0,'Winding up may be court-driven or voluntary.'],
+        ['A scheme of arrangement under the Companies Act is generally approved by:',['The Tribunal and requisite majority','Only the prosecutor','Only the registrar','Only the police'],0,'Tribunal approval and majority requirements are relevant.'],
+        ['Competition law prohibits agreements that cause an appreciable adverse effect on:',['Competition','Employment','Tax filing','Company registration'],0,'Section 3 prohibits anti-competitive agreements.'],
+        ['The Competition Commission of India is a:',['Statutory body','Constitutional court','Private club','Labour tribunal'],0,'CCI is a statutory body.'],
+        ['The Competition Act primarily addresses abuse of:',['Dominant position','Tax rates','Annual returns','Membership fees'],0,'The Act prohibits abuse of dominant position.'],
+        ['SEBI primarily regulates:',['The securities market and investor protection','The criminal justice system','Civil procedure only','Only local municipal law'],0,'The securities market and investor protection are core functions of SEBI.'],
+        ['Insider trading concerns trading while in possession of:',['Unpublished price sensitive information','A private property deed','Only advertisement material','Only tax forms'],0,'UPSI is the key concept in insider trading.'],
+        ['The overriding effect of the IBC is expressed through:',['Section 238','Section 166','Section 188','Section 447'],0,'Section 238 gives the Code overriding effect.'],
+        ['A financial debt under the IBC includes debt disbursed against:',['Consideration for the time value of money','A free gift','Only tax liabilities','Only share premium'],0,'Financial debt is rooted in the time value of money.'],
+        ['The doctrine of lifting the corporate veil may be invoked to prevent:',['Fraud or evasion of law','Routine accounting','Normal shareholder rights','Company annual meetings'],0,'The veil is lifted in exceptional cases to prevent abuse.'],
+        ['The object of the SARFAESI framework is to:',['Enable secured creditors to enforce security interests','Create criminal penalties only','Regulate elections','Set court fees'],0,'SARFAESI helps secured creditors enforce secured assets.'],
+        ['A corporate debtor may propose a resolution plan under:',['CIRP','Tax dispute procedure','Civil appeal process','Election law'],0,'CIRP is the corporate insolvency resolution process.']
       ],
       'Criminal Law and Procedure': [
-        ['The mental element of an offence is commonly called:',['Actus reus','Mens rea','Res judicata','Locus standi'],1,'Mens rea refers to the guilty state of mind.'],
-        ['A criminal conspiracy requires an agreement to do:',['A lawful act only','An illegal act or lawful act by illegal means','An act of negligence only','Any act by the police'],1,'Conspiracy covers illegal acts or lawful acts by illegal means.'],
-        ['The principle against double jeopardy is protected under:',['Article 14','Article 19','Article 20(2)','Article 32'],2,'Article 20(2) protects against being punished twice for the same offence.'],
-        ['An FIR is generally information relating to a:',['Cognizable offence','Civil dispute','Tax dispute','Labour issue'],0,'The FIR is generally for an offence that the police can investigate without a magistrate’s order.'],
-        ['A confession made to a police officer is generally:',['Always admissible','Inadmissible subject to statutory exceptions','Always conclusive','Never relevant'],1,'Police confessions are restricted under the evidentiary framework.']
+        ['The mental element of an offence is generally described as:',['Actus reus','Mens rea','Locus standi','Estoppel'],1,'Mens rea is the guilty intention or knowledge.'],
+        ['A criminal conspiracy requires agreement to do:',['A lawful act only','An illegal act or a lawful act by illegal means','Any act by a public servant','A civil wrong only'],1,'The essence of conspiracy is an agreement for an unlawful objective.'],
+        ['The burden of proving a special exception generally lies on:',['The prosecution','The judge alone','The accused if he invokes it','The complainant only'],2,'The accused bears the burden when relying on an exception.'],
+        ['The FIR is ordinarily information regarding:',['A cognizable offence','A tax dispute','An arbitration claim','A company registration issue'],0,'FIR is recorded for cognizable offences.'],
+        ['A cognizable offence allows police to investigate:',['Without a magistrate’s prior order','Only after consent of the victim','Only after a civil suit is filed','Never without the High Court'],0,'Cognizable offences are investigated by police without prior judicial sanction.'],
+        ['A bailable offence means bail is:',['A matter of right under the law','Always refused','Relief only from the Supreme Court','Issued only after conviction'],0,'Bailable offences generally give a right to bail.'],
+        ['The object of remand is to authorize:',['Lawful custody during investigation or proceedings','Punishment before trial','A final conviction','Transfer of property'],0,'Remand is about custody pending investigation or trial.'],
+        ['The charge is framed to inform the accused of:',['The precise accusation to be tried','The final sentence','The court fee','The evidence of the witness list'],0,'A charge sets out the offence to be tried.'],
+        ['The principle against double jeopardy is enshrined in:',['Article 20(2)','Article 14','Article 32','Article 19'],0,'Article 20(2) prohibits double jeopardy.'],
+        ['A confession made to a police officer is generally:',['Always admissible','Inadmissible subject to statutory exceptions','Conclusive proof','Not relevant in evidence'],1,'Confessions to police are restricted by evidentiary law.'],
+        ['Anticipatory bail is granted:',['In anticipation of arrest','After conviction','Only to companies','Only in civil matters'],0,'Anticipatory bail is pre-arrest protection.'],
+        ['A complaint differs from a police report because it is:',['Made to a magistrate and is not a police report','Always filed after conviction','Only in civil matters','Demanding a warrant only'],0,'A complaint is a magistrate-based proceeding distinct from a police report.'],
+        ['The purpose of examination-in-chief is to:',['Lead the witness’s evidence by the party calling the witness','Cross-examine by the adverse party','Render judgement','Set the charge'],0,'Examination-in-chief is the primary evidence by the party calling the witness.'],
+        ['Cross-examination is conducted by:',['The adverse party','The police only','The registrar only','The judge alone'],0,'Cross-examination tests the witness through the adverse party.'],
+        ['A criminal appeal is generally a continuation of:',['The original proceedings for appellate review','A tax assessment','An arbitration award','A civil suit only'],0,'Appeal is a review of the original decision.'],
+        ['A criminal conspiracy may be proved by:',['Acts and circumstances indicating the agreement and common intention','Only documentary proof of prior certainty','Only oral statements without corroboration','Only the defendant’s confession before an advocate'],0,'Conspiracy is often established by conduct and circumstances.'],
+        ['A person can usually plead alibi when:',['The person was elsewhere and not present at the place of the offence','The person is a company director','The charge is only civil','The judge requests it'],0,'Alibi is a defence based on absence from the scene.'],
+        ['A dying declaration is relevant because it is connected with:',['The cause or circumstances of the declarant’s death','The amount of tax due','The board resolution of a company','A civil judgment'],0,'Dying declaration is admitted because of its nexus with death.'],
+        ['Judicial notice refers to facts that the court will take notice of:',['Without formal proof','Only if a witness testifies','Only in civil cases','Never in criminal proceedings'],0,'Judicial notice dispenses with formal proof for certain recognised facts.'],
+        ['A plea of insanity is usually examined through:',['The mental condition of the accused and the legal test','Only the criminal procedure code alone','The company’s articles','No legal standard'],0,'The law examines criminal responsibility through mental condition and legal standards.']
       ],
-      'Constitution and Evidence': [
-        ['Article 14 guarantees:',['Equality before law and equal protection of laws','Only free speech','Only religious freedom','Only property rights'],0,'Article 14 is the equality clause.'],
-        ['Article 21 protects:',['Life and personal liberty','Right to property only','Freedom of the press only','Right to strike only'],0,'Article 21 protects life and personal liberty.'],
-        ['A presumption is:',['A final conclusion of fact','An inference permitted by law','A pleading only','An appeal remedy'],1,'Presumptions are legal inferences.'],
-        ['The principle of res gestae is relevant to facts:',['Forming part of the same transaction','Relating only to tax filings','Concerning only company resolutions','Not requiring proof'],0,'Res gestae covers facts connected with the same transaction.'],
-        ['The principle of estoppel prevents a person from:',['Going back on a representation relied upon by another','Ignoring all evidence','Using legal counsel','Changing the court fee'],0,'Estoppel prevents inconsistent conduct when reliance exists.']
+      'Constitution, Evidence and Procedure': [
+        ['Article 14 guarantees:',['Equality before law and equal protection of laws','Freedom of speech only','Right to property only','Freedom to form a company only'],0,'Article 14 is the equality clause.'],
+        ['Article 19 freedoms are available to:',['Citizens','All persons without exception','Foreign companies only','All judges only'],0,'Article 19 rights are generally available to citizens.'],
+        ['Article 21 protects:',['Life and personal liberty','Only property','Only property transfer','Only religion'],0,'Article 21 is the right to life and personal liberty.'],
+        ['The writ of habeas corpus is used to challenge:',['Unlawful detention','Tax assessment','Company meetings','Appeals alone'],0,'Habeas corpus challenges unlawful restraint.'],
+        ['Mandamus is issued to:',['Compel performance of a public duty','Punish for contempt only','Set aside company shares','Award damages without trial'],0,'Mandamus compels public authorities to perform duties.'],
+        ['The basic structure doctrine limits:',['Amendment powers of Parliament','Police powers only','Company registration powers','Tax powers only'],0,'The basic structure doctrine limits constitutional amendments.'],
+        ['Directive Principles are:',['Fundamental in governance, though generally non-justiciable','Immediately enforceable like fundamental rights','Applicable only to courts','Not part of the Constitution'],0,'Directive Principles guide state policy and are generally non-justiciable.'],
+        ['The President acts on the aid and advice of:',['Council of Ministers','Election Commission','Supreme Court only','Chief Justice only'],0,'Article 74 requires the President to act on ministerial advice.'],
+        ['A presumption is:',['An inference permitted or directed by law','A final decree','A written statement only','An appeal'],0,'A presumption is a legal inference.'],
+        ['Facts forming part of the same transaction are relevant under:',['Res gestae','Caveat emptor','Locus standi','Amicus curiae'],0,'Res gestae covers statements or acts forming part of a transaction.'],
+        ['The best evidence rule generally prefers:',['Primary evidence','Hearsay evidence','Oral rumours','Anonymous testimony'],0,'The best evidence rule prioritises original evidence.'],
+        ['Expert opinion is relevant when the court needs help on matters of:',['Science, art or foreign law','Only everyday facts','Only tax calculations','Only procedural defaults'],0,'Expert evidence is admissible for specialised matters.'],
+        ['Estoppel prevents a person from:',['Taking a position inconsistent with earlier representation relied upon by another','Changing all documents','Delaying court matters','Submitting evidence later'],0,'Estoppel prevents inconsistency when reliance exists.'],
+        ['The standard of proof in a criminal trial is ordinarily:',['Beyond reasonable doubt','Balance of probabilities','Reasonable suspicion only','Any evidence available'],0,'Criminal law requires proof beyond reasonable doubt.'],
+        ['A legal notice is primarily used to:',['Communicate the claim, basis and relief sought','Punish the other side','Replace a court order','Choose a judge'],0,'A legal notice informs the opponent of the claim and relief required.'],
+        ['Natural justice includes:',['Fair hearing and absence of bias','Automatic conviction','Prior police report only','No right to counsel'],0,'Audi alteram partem and nemo judex are core principles.'],
+        ['A reasoned order is important because it:',['Shows application of mind and allows review','Avoids any hearing','Makes judges immune','Prevents all appeals'],0,'Reasons facilitate scrutiny and accountability.'],
+        ['A party should research the legal issue first through:',['Statutory text and binding precedent','Social media trends','Newspaper headlines only','A friend’s opinion'],0,'The governing law comes from primary legal sources and precedent.'],
+        ['The rule of purposive interpretation seeks to advance:',['The object and purpose of the legislation','The public opinion only','An advocate’s convenience','An old interpretation regardless of text'],0,'Purposive interpretation reads text in light of its purpose.'],
+        ['The principle of proportionality tests whether state action is:',['Suitable, necessary and balanced','Always maximum force','Only punitive','Based solely on public opinion'],0,'Proportionality balances means and ends.']
       ],
-      'Economic Offences and Allied Laws': [
-        ['The Prevention of Money-Laundering Act is intended to prevent proceeds of crime from being projected as:',['Tax-free income','Untainted property','Company capital','Share premium'],1,'PMLA covers projection of proceeds as untainted property.'],
-        ['The Information Technology Act gives legal recognition to:',['Electronic records and signatures','Only oral agreements','Only paper contracts','Only arbitration awards'],0,'The IT Act recognises electronic records and signatures.'],
-        ['The Enforcement Directorate is associated with investigation under:',['Trade Union law','PMLA and FEMA','Company secretarial law','Civil Procedure only'],1,'ED is involved in money laundering and foreign exchange enforcement.'],
-        ['The Prevention of Corruption Act primarily concerns:',['Corrupt conduct involving public servants','Company incorporation','Civil arbitration','Criminal procedure only'],0,'The Act addresses corruption-related offences.'],
-        ['Under FEMA, the focus is on:',['Foreign exchange management','Internal governance of directors','Stamp duties','Court fees'],0,'FEMA regulates foreign exchange and related matters.']
+      'Economic Offences, IT and Allied Laws': [
+        ['PMLA deals with proceeds of crime being projected as:',['Untainted property','Tax refund only','Company assets only','Court evidence only'],0,'Projection of tainted proceeds as untainted property is the target conduct.'],
+        ['The Enforcement Directorate is associated with:',['PMLA and FEMA enforcement','Only tax registration','Only corporate filings','Only company annual returns'],0,'ED is linked with economic law enforcement.'],
+        ['The Prevention of Corruption Act primarily addresses:',['Corrupt conduct involving public servants','Only share transfer disputes','Only contract drafting','Only consumer law'],0,'The Act targets public corruption offences.'],
+        ['The Information Technology Act gives legal recognition to:',['Electronic records and digital signatures','Only paper contracts','Only written judicial orders','Only tax notices'],0,'Electronic records and signatures are recognised under the IT Act.'],
+        ['Unauthorised access to a computer resource may attract liability under:',['Information Technology law','Local municipal law','Criminal procedure only','Property tax law'],0,'The IT Act addresses unauthorised access and related conduct.'],
+        ['FEMA primarily concerns:',['Foreign exchange management','Family courts','Civil procedure only','Labour participation'],0,'FEMA regulates foreign exchange and payments.'],
+        ['The Central Vigilance Commission is:',['A statutory vigilance institution','A civil court','A private company','A local police station'],0,'The CVC is a statutory vigilance body.'],
+        ['The DSPE Act is relevant to the statutory basis of:',['CBI/DSPE investigation','Stock exchange investigations','Company annual return filing','Tax tribunals'],0,'The DSPE Act underpins the CBI’s investigative powers.'],
+        ['The Environment (Protection) Act, 1986 empowers the Central Government to:',['Take measures to protect and improve the environment','Incorporate companies only','Set court fees only','Frame only electoral rules'],0,'The Act empowers environment protection measures.'],
+        ['The Right to Information Act promotes:',['Transparency and access to information','Secrecy in all public offices','Minimum disclosure in company filings','Private arbitration only'],0,'RTI aims to provide access to information.'],
+        ['Tax evasion differs from tax avoidance because the former is generally:',['illegal concealment or misrepresentation','a government scheme','a type of company governance','a court order'],0,'Tax evasion is unlawful; tax avoidance may be lawful subject to rules.'],
+        ['A shell company may be used for:',['Layering or concealment of beneficial ownership','Only employee welfare programs','Only public dividends','Only legal charity only'],0,'Shell structures may be used for concealment of beneficial ownership.'],
+        ['Beneficial ownership rules seek to identify:',['The natural person who ultimately owns or controls an entity','Only the registered offices','Only the company secretary','Only auditors'],0,'The law wants the ultimate controller.'],
+        ['Sanctions under economic laws may include:',['Attachment, confiscation, penalty or prosecution','Only an apology','Only arbitration','Only an internal committee'],0,'Economic offences involve varied sanctions.'],
+        ['A documentary electronic record is ordinarily admissible subject to:',['Applicable statutory conditions and the Evidence Act framework','No law at all','The company’s Articles only','Only court convenience'],0,'Electronic records follow statutory rules for admissibility.'],
+        ['Proceeds of crime under PMLA are connected with:',['A scheduled offence','An arbitration award alone','A company share price only','Only police complaints'],0,'The offence must be linked to a scheduled offence.'],
+        ['A public servant may be liable under corruption law if he:',['Accepts or obtains a benefit improperly','Files an annual return on time','Discloses a shareholder list','Issues a notice under CPC'],0,'Corrupt conduct is the focus of the statute.'],
+        ['The doctrine of mens rea is particularly important in:',['Economic offences and regulatory offences','Simple procedural notices only','Mandatory court fee payments','Administrative appointments'],0,'Mens rea often matters in economic and penal offences.'],
+        ['An offence under the IT Act may involve:',['Unauthorised access or data damage','Only tax arrears','Only non-payment of dividend','Only filing a company annual return'],0,'The IT Act covers digital criminal conduct.'],
+        ['A forensic audit is often relevant in matters involving:',['Fraud, siphoning and financial irregularity','Simple diary management','Local municipal fees','Company general meetings'],0,'Forensic audit helps detect and investigate financial irregularities.']
+      ],
+      'Drafting, Ethics and Current Legal Application': [
+        ['The primary purpose of a legal notice is to:',['Clearly communicate the claim, legal basis, and relief sought','Convict the recipient immediately','Replace a court order','Wait for default without notice'],0,'A legal notice frames the claim and the demand.'],
+        ['A prosecutor’s duty is best described as:',['To assist the court in the administration of justice, not merely to secure conviction','To win at any cost','To suppress exculpatory material','To represent only business interests'],0,'Prosecutorial duty includes fairness and truth.'],
+        ['A conflict of interest should ordinarily be:',['Disclosed and appropriately managed or avoided','Hidden from the court','Used to gain advantage','Ignored if convenient'],0,'Conflict management preserves fairness.'],
+        ['A pleading should contain:',['Material facts, not evidence by which they will be proved','Every rumour and speculation','Only final argument','Only dates and names'],0,'Pleadings state material facts.'],
+        ['The burden of proof means the obligation to:',['Establish a fact to the legally required standard','Answer every question personally','Pay court fees only','Write a judgment'],0,'Burden of proof allocates who must establish the relevant fact.'],
+        ['Natural justice ordinarily includes:',['Fair hearing and absence of bias','Automatic acquittal','Private investigation only','No reasoned decision'],0,'The principles of natural justice are fundamental to fair adjudication.'],
+        ['Reasoned orders are important because they:',['Show application of mind and facilitate review','Guarantee the decision is right','Avoid all appeals','Substitute for evidence'],0,'Reasons show lawful reasoning and enable review.'],
+        ['A company prosecutor should begin by:',['Mapping offence ingredients to admissible evidence','Reading only headlines','Ignoring relevant law','Drafting a sentence first'],0,'Structured issue analysis is essential.'],
+        ['Chain of custody is important for:',['Maintaining integrity and continuity of seized evidence','Selecting directors','Preparing the company’s annual return','Setting court fees'],0,'Chain of custody ensures evidence integrity.'],
+        ['A material contradiction is one that goes to:',['A significant fact or issue','Punctuation only','Minor typographical errors','Administrative formality only'],0,'Material contradictions are legally significant.'],
+        ['The principle of proportionality asks whether state action is:',['Suitable, necessary and balanced in relation to its objective','Always maximum punishment','Always based on majority view','Only a policy preference'],0,'Proportionality is a doctrine of reasonableness.'],
+        ['A legal issue should be researched first through:',['Statutory text and binding precedent','Unverified internet posts','Private social media groups','A newspaper summary alone'],0,'The law is anchored in authoritative sources.'],
+        ['When a statute uses the word “shall”, the effect depends on:',['Legislative intent, context and consequences','The dictionary alone','The prosecutor’s view alone','No rule at all'],0,'The word “shall” is construed contextually.'],
+        ['A limitation period concerns:',['The period within which a proceeding must be instituted','The length of a judgment','The number of witnesses','The court fee payable'],0,'Limitation restricts the period for taking action.'],
+        ['Purposive interpretation seeks to advance:',['The object and purpose of the legislation while respecting the text','The convenience of the judge','The private opinion of the parties','A judicial preference alone'],0,'Purposive interpretation harmonises text and purpose.'],
+        ['The safest approach to an amended penal statute is to check:',['The commencement, savings, transitional provision and date of offence','The relevant social media post','The opinion of an unqualified friend','The original challenge filed by the accused'],0,'Temporal application of law requires checking statutory commencement and transitional provisions.'],
+        ['A prosecution should ordinarily consider whether the evidence is:',['Relevant, admissible, reliable and sufficient','Only available in a digital format','Only from public records','Only from a confession alone'],0,'Evidence must satisfy quality and admissibility standards.'],
+        ['The doctrine of prejudice is relevant where a party claims it has been:',['Harmed by procedural violation or unfairness','Paid the court fee late only','Not selected for a hearing','Listed for a case in the wrong court'],0,'Prejudice focuses on actual harm caused by irregularity.'],
+        ['A company prosecutor should pay attention to:',['Jurisdiction, charge framing, evidence, statutory timelines and defences','Only newspaper reports','Only company secretarial acts','Only annual returns'],0,'A prosecutor must manage legal and evidentiary fundamentals.'],
+        ['A statute may be interpreted to avoid:',['Absurdity, injustice or conflict with the constitution','Only the court fee schedule','Only compliance with newspaper notices','Only social media commentary'],0,'Interpretation aims to avoid absurd and unconstitutional outcomes.']
       ]
     };
 
@@ -426,7 +533,7 @@
     let current = 0;
     let answers = Array(questions.length).fill(null);
     let reviewSet = new Set();
-    let timeLeft = 45 * 60;
+    let timeLeft = 120 * 60;
     let timer = null;
 
     const $ = (id) => document.getElementById(id);
@@ -517,18 +624,18 @@
       });
 
       const unattempted = questions.length - correct - wrong;
-      const score = correct - (wrong * 0.25);
+      const score = correct * 2.5 - wrong * 0.8333333333;
 
       $('score').textContent = score.toFixed(2);
       $('correct').textContent = correct;
       $('wrong').textContent = wrong;
       $('unattempted').textContent = unattempted;
-      $('accuracy').textContent = `${Math.round((correct / (correct + wrong + unattempted)) * 100)}%`;
+      $('accuracy').textContent = `${Math.round((correct / questions.length) * 100)}%`;
 
       $('resultMessage').textContent =
-        score >= 28 ? 'Excellent. You have a strong command of Company Prosecutor law topics.' :
-        score >= 18 ? 'Good attempt. Revise the statutory provisions and application-based concepts.' :
-        'Needs revision. Focus on Companies Act, insolvency, and criminal law fundamentals.';
+        score >= 180 ? 'Excellent. Strong UPSC-type preparation level.' :
+        score >= 120 ? 'Good attempt. Focus on reducing errors and revising weak sections.' :
+        'Needs more revision. Prioritise basic statutory and procedural law study.';
 
       const sectionPerformance = {};
       questions.forEach((question, index) => {
