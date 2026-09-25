@@ -1,0 +1,620 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Civil Procedure Code CBT</title>
+  <style>
+    :root {
+      --navy: #102a43;
+      --blue: #1769aa;
+      --pale: #f4f7fb;
+      --line: #d9e2ec;
+      --green: #16855b;
+      --orange: #c56b12;
+      --red: #c0392b;
+      --white: #fff;
+      --muted: #627d98;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--pale);
+      color: #243b53;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      line-height: 1.5;
+    }
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--navy);
+      color: #fff;
+      padding: 18px clamp(20px, 4vw, 80px);
+    }
+    .eyebrow { font-size: 11px; letter-spacing: 1.5px; opacity: 0.8; }
+    h1 { margin: 4px 0 0; font-size: clamp(22px, 2vw, 30px); }
+    .clock {
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 7px;
+      padding: 10px 16px;
+      font-weight: 700;
+      font-family: ui-monospace, SFMono-Regular, monospace;
+      min-width: 110px;
+      text-align: center;
+    }
+    .container { max-width: 1200px; margin: 30px auto; padding: 0 20px; }
+    .card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      box-shadow: 0 3px 14px rgba(16,42,67,0.08);
+    }
+    .start-screen {
+      max-width: 820px;
+      margin: 40px auto;
+      padding: 36px;
+    }
+    .badge {
+      display: inline-block;
+      font-size: 12px;
+      letter-spacing: 1.2px;
+      font-weight: 700;
+      color: var(--blue);
+    }
+    .start-screen h2, .results h2 { margin: 12px 0 10px; font-size: clamp(26px, 3vw, 36px); }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(120px, 1fr));
+      gap: 12px;
+      margin: 24px 0;
+    }
+    .stats div, .result-grid div {
+      background: #f0f5fa;
+      border-radius: 8px;
+      padding: 16px 10px;
+      text-align: center;
+    }
+    .stats b, .result-grid b {
+      display: block;
+      font-size: 22px;
+      color: var(--navy);
+    }
+    .stats small, .result-grid small { color: var(--muted); }
+    .notice {
+      background: #fff8e8;
+      border-left: 4px solid #e9a23b;
+      padding: 14px 18px;
+      margin: 22px 0;
+      border-radius: 6px;
+    }
+    .notice ul { margin: 10px 0 0 18px; }
+    button {
+      border: none;
+      border-radius: 7px;
+      padding: 11px 18px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+    .primary { background: var(--blue); color: white; }
+    .primary:hover { background: #0e578f; }
+    .secondary { background: #edf2f7; color: var(--navy); border: 1px solid var(--line); }
+    .submit { background: var(--red); color: white; width: 100%; margin-top: 18px; }
+    .hidden { display: none !important; }
+    .progress-row { margin-bottom: 18px; }
+    .progress-row div:first-child {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      margin-bottom: 8px;
+      gap: 12px;
+    }
+    .progress-row b { font-size: 18px; }
+    .progress-row span { color: var(--muted); }
+    .progress {
+      width: 100%;
+      height: 8px;
+      background: #d9e2ec;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .progress > span {
+      display: block;
+      width: 0;
+      height: 100%;
+      background: var(--blue);
+      transition: width 0.2s ease;
+    }
+    .test-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 290px;
+      gap: 20px;
+    }
+    .question-card { padding: 26px; }
+    .question-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--muted);
+      font-weight: 700;
+    }
+    .question-card h2 {
+      font-size: clamp(20px, 1.8vw, 26px);
+      margin: 20px 0;
+      line-height: 1.45;
+    }
+    .options {
+      display: grid;
+      gap: 12px;
+    }
+    .option {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      padding: 14px;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+    .option:hover, .option.selected {
+      border-color: var(--blue);
+      background: #f0f7ff;
+    }
+    .option input {
+      margin-top: 5px;
+      accent-color: var(--blue);
+    }
+    .actions, .nav {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 22px;
+    }
+    .nav {
+      border-top: 1px solid var(--line);
+      padding-top: 18px;
+    }
+    .palette-card {
+      padding: 18px;
+      height: max-content;
+      position: sticky;
+      top: 20px;
+    }
+    .palette {
+      margin-top: 14px;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 7px;
+      max-height: 440px;
+      overflow: auto;
+    }
+    .palette button {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 5px;
+      padding: 9px 2px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+    .palette button.answered { background: #d9f2e7; color: #075c3e; border-color: #80cfae; }
+    .palette button.review { background: #fff0d9; color: #8a4b08; border-color: #e8ae5e; }
+    .legend {
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 6px;
+    }
+    .legend span { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin: 0 6px 0 8px; }
+    .answered-dot { background: #80cfae; }
+    .review-dot { background: #e8ae5e; }
+    .results {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 32px;
+    }
+    .score-box {
+      width: 100%;
+      text-align: center;
+      background: #f0f7ff;
+      padding: 22px;
+      border-radius: 10px;
+      margin: 22px 0;
+    }
+    .score-box strong { font-size: 52px; color: var(--blue); }
+    .score-box span { font-size: 22px; }
+    .result-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(100px, 1fr));
+      gap: 12px;
+      margin: 12px 0 22px;
+    }
+    .section-row { margin-top: 10px; }
+    .section-row header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+    .bar {
+      background: #ebf0f5;
+      height: 10px;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .bar > span {
+      display: block;
+      height: 100%;
+      background: var(--green);
+    }
+    .review-item {
+      border-top: 1px solid var(--line);
+      padding: 16px 0;
+    }
+    .review-item h4 { margin: 0 0 6px; }
+    .correct-text { color: var(--green); font-weight: 700; }
+    .wrong-text { color: var(--red); font-weight: 700; }
+    footer {
+      text-align: center;
+      padding: 28px 20px 40px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    @media (max-width: 760px) {
+      .test-grid { grid-template-columns: 1fr; }
+      .palette-card { position: static; }
+      .stats, .result-grid { grid-template-columns: repeat(2, minmax(120px, 1fr)); }
+      .actions, .nav { flex-wrap: wrap; }
+      .question-card { padding: 20px; }
+      .start-screen { padding: 22px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <div class="eyebrow">LEGAL PRACTICE TEST</div>
+      <h1>Civil Procedure Code CBT</h1>
+    </div>
+    <div id="clock" class="clock" aria-live="polite">45:00</div>
+  </header>
+
+  <main class="container">
+    <section id="startScreen" class="card start-screen">
+      <span class="badge">MOCK TEST</span>
+      <h2>Civil Procedure Code Practice Paper</h2>
+      <p>This mock test covers core CPC topics such as jurisdiction, pleadings, suits, interim relief, appeals, execution, and res judicata.</p>
+
+      <div class="stats">
+        <div><b>40</b><small>Questions</small></div>
+        <div><b>40</b><small>Marks</small></div>
+        <div><b>45 min</b><small>Duration</small></div>
+        <div><b>−0.25</b><small>Wrong answer</small></div>
+      </div>
+
+      <div class="notice">
+        <strong>Instructions</strong>
+        <ul>
+          <li>Choose the best option.</li>
+          <li>Each question carries 1 mark.</li>
+          <li>Unattempted questions get 0 marks.</li>
+          <li>There is negative marking for wrong answers.</li>
+          <li>This is a practice test for revision and training only.</li>
+        </ul>
+      </div>
+
+      <button id="startBtn" class="primary">Start CBT</button>
+    </section>
+
+    <section id="testScreen" class="hidden">
+      <div class="progress-row">
+        <div>
+          <b id="sectionName">Jurisdiction and General Principles</b>
+          <span id="progressText">Question 1 of 40</span>
+        </div>
+        <div class="progress"><span id="progressBar"></span></div>
+      </div>
+
+      <div class="test-grid">
+        <article class="card question-card">
+          <div class="question-meta">
+            <span id="qNumber">Q1</span>
+            <span>1 mark</span>
+          </div>
+
+          <h2 id="question"></h2>
+
+          <div id="options" class="options"></div>
+
+          <div class="actions">
+            <button id="clearBtn" class="secondary">Clear response</button>
+            <button id="reviewBtn" class="secondary">Mark for review</button>
+          </div>
+
+          <div class="nav">
+            <button id="prevBtn" class="secondary">← Previous</button>
+            <button id="nextBtn" class="primary">Save & Next →</button>
+          </div>
+        </article>
+
+        <aside class="card palette-card">
+          <h3>Question palette</h3>
+          <div class="legend">
+            <span class="answered-dot"></span> Answered
+            <span class="review-dot"></span> Review
+          </div>
+          <div id="palette" class="palette"></div>
+          <button id="submitBtn" class="submit">Submit test</button>
+        </aside>
+      </div>
+    </section>
+
+    <section id="resultScreen" class="hidden card results">
+      <span class="badge">TEST COMPLETE</span>
+      <h2>Your result</h2>
+
+      <div class="score-box">
+        <strong id="score">0</strong>
+        <span>/ 40</span>
+        <p id="resultMessage"></p>
+      </div>
+
+      <div class="result-grid">
+        <div><b id="correct">0</b><small>Correct</small></div>
+        <div><b id="wrong">0</b><small>Incorrect</small></div>
+        <div><b id="unattempted">0</b><small>Unattempted</small></div>
+        <div><b id="accuracy">0%</b><small>Accuracy</small></div>
+      </div>
+
+      <h3>Section-wise performance</h3>
+      <div id="sectionResults"></div>
+
+      <h3>Answer review</h3>
+      <div id="reviewList" class="review-list"></div>
+
+      <button id="restartBtn" class="primary" style="margin-top: 18px;">Restart test</button>
+    </section>
+  </main>
+
+  <footer>Practice tool for revision and training. Always verify with the latest procedural law and official notifications.</footer>
+
+  <script>
+    const sections = {
+      'Jurisdiction and General Principles': [
+        ['The Code of Civil Procedure applies to civil proceedings in:',['All courts in India','Only High Courts','Only District Courts','Only Supreme Court'],0,'The CPC governs civil procedure in courts established under the Indian judicial system, subject to exceptions.'],
+        ['A suit is ordinarily instituted by:',['Presentation of plaint','Application under Order IX','Writ petition','Notice under Section 80'],0,'A civil suit is commenced by filing a plaint in the proper court.'],
+        ['The doctrine of res judicata prevents:',['A second suit on the same cause of action between same parties after final judgment','All appeals','Evidence being recorded','Interim injunctions'],0,'Res judicata bars re-litigation of matters adjudicated conclusively.'],
+        ['Jurisdiction of a court may be classified as:',['Territorial, pecuniary and subject-matter','Civil, criminal and appellate','Original and revisional only','Statutory and executive'],0,'Jurisdiction is commonly analysed in these dimensions.'],
+        ['The place where a suit is to be instituted is determined by:',['The cause of action or residence or property in some cases','Only the court fee paid','Only the defendant’s profession','Choice of the judge'],0,'This is a central rule under the CPC.']
+      ],
+      'Pleadings and Parties': [
+        ['A plaint must contain:',['Facts constituting the cause of action and relief claimed','Only legal arguments','Only witness names','Only the court fee'],0,'A plaint is the statement of facts on which the plaintiff sues.'],
+        ['A written statement is generally filed by the:',['Defendant','Plaintiff','Court clerk','Witness'],0,'The defendant responds to the plaint in a written statement.'],
+        ['A set-off is a claim by the defendant:',['Against the plaintiff, arising out of the same transaction','Against the court','Against a co-defendant only','Against the judge'],0,'Set-off is a statutory mechanism for mutual adjustment of claims.'],
+        ['A counter-claim must be:',['A claim against the plaintiff and may be independent of the plaintiff’s claim','Only filed after trial','Only filed in appeal','Filed only with a written statement in criminal matters'],0,'The CPC allows a defendant to raise a counter-claim in the same suit.'],
+        ['An amendment of pleadings is generally allowed to:',['Do substantial justice and prevent multiplicity of litigation','Delay proceedings indefinitely','Change the jurisdiction of the court','Remove all evidence'],0,'Amendment is ordinarily permitted to avoid injustice and ensure proper adjudication.']
+      ],
+      'Suits, Summons and Appearance': [
+        ['Summons are issued to secure the:',['Appearance of the defendant','Proof of stamp duty','Settlement of costs only','Transfer of decree'],0,'Summons call the defendant to appear and answer the claim.'],
+        ['Service of summons may be effected by:',['Personal service, substituted service or by post in some cases under law','Only by telegram','Only through advocate notice','Only by the court clerk without procedure'],0,'The CPC prescribes multiple modes of service.'],
+        ['A suit can be dismissed for default if:',['The plaintiff fails to appear','The defendant has no counsel','The judge is unavailable','The summons are unserved'],0,'Default dismissal is a consequence of non-appearance.'],
+        ['An ex parte decree can be set aside on application by the defendant if:',['Sufficient cause is shown','The plaintiff refuses settlement','The court fee is high','No written statement was filed'],0,'The defendant may seek to set aside an ex parte decree under the CPC process.'],
+        ['An order for substituted service is made when:',['Normal service cannot be effected by ordinary means and the court is satisfied as to the method','The defendant is rich','Judgment is delayed','The court wishes to delay the matter'],0,'This is a recognised procedural route.']
+      ],
+      'Interim Relief and Injunctions': [
+        ['An injunction is a form of:',['Temporary or perpetual preventive relief','Punishment for contempt','Evidence leading to final judgment','Writ of execution'],0,'Injunctions restrain or compel certain actions.'],
+        ['Temporary injunctions are granted to preserve:',['Status quo until the rights are finally decided','The court record only','The defendant’s property permanently','Only the plaintiff’s bank account'],0,'A temporary injunction protects the status quo pending adjudication.'],
+        ['The Court can grant an interim mandatory injunction when:',['The facts compel it and the balance of convenience and irreparable injury warrant it','The plaintiff merely alleges inconvenience','The case is trivial','The defendant has not appeared'],0,'Mandatory injunctions are exceptional and require stronger grounds.'],
+        ['An attachment before judgment is directed to secure:',['The property from being dissipated pending adjudication','The plaintiff’s documents only','The witness list','The court fee'],0,'It preserves assets to satisfy a possible decree.'],
+        ['The purpose of arrest before judgment is generally:',['To secure attendance or prevent frustration of the decree','To punish the defendant before trial','To recover court costs automatically','To issue final decree without trial'],0,'The remedy must be used only in exceptional circumstances and under the statutory conditions.']
+      ],
+      'Discovery, Evidence and Trial': [
+        ['Discovery under the CPC refers to:',['Production and inspection of documents and interrogatories in appropriate cases','Final decree drafting','Transfer of property','Arrest of witness'],0,'Discovery is a procedural device to obtain information relevant to the case.'],
+        ['Framing of issues is intended to identify:',['Questions of law or fact arising for determination','The fees payable','The number of lawyers','The transfer application'],0,'Issues structure the trial.'],
+        ['A party may be examined as a witness in the same suit by:',['The opposing party or the court, subject to procedure','The judge without notice','The clerk only','The registrar alone'],0,'Witness examination is governed by procedural rules.'],
+        ['A summons for production of documents is to secure:',['Production of public or private documents relevant to the case','Service of the plaint','Execution of a decree','Police investigation'],0,'Document production is a procedural tool.'],
+        ['The Court may reject irrelevant evidence because it:',['Would waste time and may prejudice the case','Is always inadmissible in all suits','Affects the jurisdiction of the court','Is not signed by a lawyer'],0,'Relevance and procedural economy are important.']
+      ],
+      'Judgments, Decrees and Appeals': [
+        ['A decree is a formal expression of adjudication, while a judgment is:',['The reasoned statement of the court','The draft summons','A mere order for costs','A plaint amendment'],0,'Judgment and decree are distinct but connected concepts.'],
+        ['A first appeal lies from:',['A decree or judgment of a court subordinate to the High Court in most cases','Only from a final decree of the Supreme Court','Only from a default notice','Only from a settlement'],0,'Appeals are a recognized remedy from subordinate court decisions.'],
+        ['A second appeal lies only on a substantial question of:',['Law','Fact','Procedure alone','Costs without a legal issue'],0,'Second appeal is restricted to substantial questions of law.'],
+        ['A review is generally sought on grounds such as:',['Error apparent on the face of the record','Any dissatisfaction with a decision','A witness changing profession','A procedural adjournment'],0,'A review is narrow and not a rehearing.'],
+        ['An appeal by a party does not ordinarily:',['Stay the operation of the decree unless ordered by the court','Inevitable set aside the decree','Remove all evidence','Affect the limitation period automatically'],0,'Stay is discretionary and requires judicial order.']
+      ],
+      'Execution, Costs and Miscellaneous': [
+        ['Execution is the process of enforcing a:',['Decree','Pleadings draft','Notice of motion','Judgment draft only'],0,'Execution enforces the final decree.'],
+        ['The court may attach property in execution if:',['The decree is unsatisfied and the property is legally attachable','The debtor is merely late in payment','The claim is still under appeal and no decree exists','The plaintiff is unable to pay court fee'],0,'Attachment is a procedural mechanism for enforcement.'],
+        ['Costs in civil proceedings are ordinarily:',['Discretionary and determined by the court in the interests of justice','Fixed by statute irrespective of conduct','Always paid only by the plaintiff','Always awarded equally'],0,'Costs are generally within the court’s discretion.'],
+        ['A suit may be stayed under the CPC if:',['It is pending before another competent court and the matter is substantially the same','The defendant does not like the jurisdiction','The plaintiff is absent for a day','The court fee is paid with delay'],0,'Stay is an important procedural safeguard to avoid parallel litigation.'],
+        ['The principle of constructive res judicata operates when:',['Matters that could have been raised are deemed to have been raised and decided','Every party always wins on appeal','The evidence is not admitted','The decree is transferred'],0,'This principle prevents fragmentation of litigation.']
+      ]
+    };
+
+    const questions = Object.entries(sections).flatMap(([subject, itemList]) =>
+      itemList.map(([q, options, answer, explanation]) => ({
+        subject,
+        q,
+        options,
+        answer,
+        explanation
+      }))
+    );
+
+    let current = 0;
+    let answers = Array(questions.length).fill(null);
+    let reviewSet = new Set();
+    let timeLeft = 45 * 60;
+    let timer = null;
+
+    const $ = (id) => document.getElementById(id);
+
+    function renderPalette() {
+      const palette = $('palette');
+      palette.innerHTML = questions.map((_, i) => {
+        const state = answers[i] !== null ? 'answered' : '';
+        const review = reviewSet.has(i) ? 'review' : '';
+        return `<button class="${state} ${review}" data-i="${i}">${i + 1}</button>`;
+      }).join('');
+
+      palette.querySelectorAll('button').forEach((btn) => {
+        btn.onclick = () => {
+          current = Number(btn.dataset.i);
+          renderQuestion();
+        };
+      });
+    }
+
+    function renderQuestion() {
+      const q = questions[current];
+      $('sectionName').textContent = q.subject;
+      $('progressText').textContent = `Question ${current + 1} of ${questions.length}`;
+      $('progressBar').style.width = `${((current + 1) / questions.length) * 100}%`;
+      $('qNumber').textContent = `Q${current + 1}`;
+      $('question').textContent = q.q;
+
+      $('options').innerHTML = q.options.map((option, index) => {
+        const selected = answers[current] === index ? 'selected' : '';
+        return `
+          <label class="option ${selected}">
+            <input type="radio" name="option" value="${index}" ${answers[current] === index ? 'checked' : ''} />
+            <span><b>${String.fromCharCode(65 + index)}.</b> ${option}</span>
+          </label>
+        `;
+      }).join('');
+
+      $('reviewBtn').textContent = reviewSet.has(current) ? 'Unmark review' : 'Mark for review';
+      $('prevBtn').disabled = current === 0;
+      $('nextBtn').textContent = current === questions.length - 1 ? 'Save & Review' : 'Save & Next →';
+
+      document.querySelectorAll('input[name="option"]').forEach((radio) => {
+        radio.addEventListener('change', (e) => {
+          answers[current] = Number(e.target.value);
+          renderPalette();
+          renderQuestion();
+        });
+      });
+
+      renderPalette();
+    }
+
+    function updateClock() {
+      const minutes = Math.floor(timeLeft / 60);
+      const seconds = timeLeft % 60;
+      $('clock').textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    }
+
+    function startTest() {
+      $('startScreen').classList.add('hidden');
+      $('testScreen').classList.remove('hidden');
+      renderQuestion();
+      updateClock();
+      timer = setInterval(() => {
+        timeLeft -= 1;
+        if (timeLeft <= 0) {
+          timeLeft = 0;
+          clearInterval(timer);
+          finishTest();
+        }
+        updateClock();
+      }, 1000);
+    }
+
+    function finishTest() {
+      clearInterval(timer);
+      $('testScreen').classList.add('hidden');
+      $('resultScreen').classList.remove('hidden');
+
+      let correct = 0;
+      let wrong = 0;
+
+      questions.forEach((question, index) => {
+        if (answers[index] === null) return;
+        if (answers[index] === question.answer) correct += 1;
+        else wrong += 1;
+      });
+
+      const unattempted = questions.length - correct - wrong;
+      const score = correct - (wrong * 0.25);
+
+      $('score').textContent = score.toFixed(2);
+      $('correct').textContent = correct;
+      $('wrong').textContent = wrong;
+      $('unattempted').textContent = unattempted;
+      $('accuracy').textContent = `${Math.round((correct / (correct + wrong + unattempted)) * 100)}%`;
+
+      $('resultMessage').textContent =
+        score >= 28 ? 'Excellent. You have a strong command of CPC concepts.' :
+        score >= 18 ? 'Good attempt. Revise the procedural nuances and case-based applications.' :
+        'Needs revision. Focus more on jurisdiction, pleadings, injunctions and execution topics.';
+
+      const sectionPerformance = {};
+      questions.forEach((question, index) => {
+        if (!sectionPerformance[question.subject]) {
+          sectionPerformance[question.subject] = { total: 0, correct: 0 };
+        }
+        sectionPerformance[question.subject].total += 1;
+        if (answers[index] === question.answer) {
+          sectionPerformance[question.subject].correct += 1;
+        }
+      });
+
+      $('sectionResults').innerHTML = Object.entries(sectionPerformance).map(([subject, data]) => {
+        const pct = (data.correct / data.total) * 100;
+        return `
+          <div class="section-row">
+            <header><span>${subject}</span><b>${data.correct}/${data.total}</b></header>
+            <div class="bar"><span style="width:${pct}%"></span></div>
+          </div>
+        `;
+      }).join('');
+
+      $('reviewList').innerHTML = questions.map((question, index) => {
+        const userAnswer = answers[index];
+        const status = userAnswer === null ? 'Unattempted' : userAnswer === question.answer ? 'Correct' : 'Incorrect';
+        const statusClass = status === 'Correct' ? 'correct-text' : status === 'Incorrect' ? 'wrong-text' : '';
+        const correctOption = String.fromCharCode(65 + question.answer);
+        return `
+          <div class="review-item">
+            <h4>Q${index + 1}. ${question.q}</h4>
+            <div class="${statusClass}">${status}</div>
+            <div><strong>Correct answer:</strong> ${correctOption}. ${question.options[question.answer]}</div>
+            <div>${question.explanation}</div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    $('startBtn').onclick = startTest;
+    $('prevBtn').onclick = () => {
+      if (current > 0) {
+        current -= 1;
+        renderQuestion();
+      }
+    };
+    $('nextBtn').onclick = () => {
+      if (current < questions.length - 1) {
+        current += 1;
+        renderQuestion();
+      } else {
+        finishTest();
+      }
+    };
+    $('clearBtn').onclick = () => {
+      answers[current] = null;
+      renderQuestion();
+    };
+    $('reviewBtn').onclick = () => {
+      if (reviewSet.has(current)) reviewSet.delete(current);
+      else reviewSet.add(current);
+      renderQuestion();
+    };
+    $('submitBtn').onclick = () => {
+      if (confirm('Submit the test now?')) finishTest();
+    };
+    $('restartBtn').onclick = () => location.reload();
+  </script>
+</body>
+</html>
